@@ -1,0 +1,1268 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hamza Anjum | Biomedical Signal Processing and Machine Learning Researcher</title>
+<meta name="description" content="Hamza Anjum, biomedical signal processing and machine learning researcher. Concept-based ECG models for valvular heart disease and grounded clinical language models. MS Electrical Engineering, NUST SEECS, Islamabad.">
+<meta name="author" content="Hamza Anjum">
+<meta name="theme-color" content="#07142B">
+<link rel="canonical" href="https://hamza-anjum.github.io/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F2EB8'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='27' font-weight='700' fill='%23FFFFFF' text-anchor='middle'%3EHA%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="profile">
+<meta property="og:site_name" content="Hamza Anjum">
+<meta property="og:title" content="Hamza Anjum | Biomedical Signal Processing and Machine Learning Researcher">
+<meta property="og:description" content="Explainable ECG models for valvular heart disease, with clinician correction and grounded report generation. MS Electrical Engineering, NUST SEECS, Islamabad.">
+<meta property="og:url" content="https://hamza-anjum.github.io/">
+<meta property="og:image" content="https://hamza-anjum.github.io/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Hamza Anjum, biomedical signal processing and machine learning researcher">
+<meta property="profile:first_name" content="Hamza">
+<meta property="profile:last_name" content="Anjum">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Hamza Anjum", "url": "https://hamza-anjum.github.io/", "image": "https://hamza-anjum.github.io/photo.jpg", "jobTitle": "Biomedical Signal Processing and Machine Learning Researcher", "affiliation": {"@type": "CollegeOrUniversity", "name": "School of Electrical Engineering and Computer Science, National University of Sciences and Technology (NUST), Islamabad"}, "alumniOf": {"@type": "CollegeOrUniversity", "name": "NED University of Engineering and Technology, Karachi"}, "knowsAbout": ["Electrocardiography", "Biomedical signal processing", "Explainable machine learning", "Concept bottleneck models", "Valvular heart disease", "Clinical language models"], "sameAs": ["https://www.linkedin.com/in/hamza-anjum-1b160619a/", "https://github.com/Hamza-anjum", "https://scholar.google.com/citations?user=jBF01rsAAAAJ&hl=en"]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap">
+<style>
+/* Palette after ibexvision.ai: white ground, royal-blue headings and links (#1F2EB8), blue gradient pills
+   (#2563EB -> #1F2EB8), light-blue card borders (#BFDBFE), deep-navy bands (#07142B -> #143A8B),
+   cyan for the ECG trace, yellow and orange only in the top news bar.
+   Layout: news bar, sticky white header, light hero (portrait, name, audience switch, stat cards),
+   full-bleed navy ECG strip, alternating white and pale-blue sections, navy contact and footer.
+   Type: Newsreader for voice, IBM Plex Sans for text, IBM Plex Mono for data. */
+:root {
+  --paper: #FFFFFF;
+  --paper-2: #F5F8FF;
+  --surface: #FFFFFF;
+  --surface-2: #F1F5FD;
+  --ink: #0F172A;
+  --ink-2: #334155;
+  --muted: #5B6B82;
+  --line: #DFE7F5;
+  --heading: #1F2EB8;
+  --accent: #1D4ED8;
+  --accent-2: #3B82F6;
+  --accent-soft: #EFF6FF;
+  --accent-line: #BFDBFE;
+  --on-accent: #FFFFFF;
+  --head-bg: rgba(255, 255, 255, 0.9);
+  --grad: linear-gradient(135deg, #2563EB 0%, #1F2EB8 100%);
+  --grad-hover: linear-gradient(135deg, #324BC2 0%, #1A379C 100%);
+  --shadow: 0 18px 40px -24px rgba(31, 46, 184, 0.45);
+  --band-ink: #F8FAFC;
+  --band-muted: #A9B9D9;
+  --band-line: rgba(147, 197, 253, 0.22);
+  --gold: #FACC15;
+  --trace: #67E8F9;
+  --band-grid-minor: rgba(96, 165, 250, 0.08);
+  --band-grid-major: rgba(96, 165, 250, 0.21);
+  --ok: #15803D;
+  --ok-soft: #DCFCE7;
+  --neg: #DC2626;
+  --neg-soft: #FEE2E2;
+  --wip: #A16207;
+  --wip-soft: #FEF3C7;
+  --font-display: "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --step--1: 0.8125rem;
+  --step-0: 1rem;
+  --step-1: 1.1875rem;
+  --step-2: 1.5rem;
+  --step-3: 2.125rem;
+  --step-4: clamp(2.7rem, 7.2vw, 4.6rem);
+  --radius: 14px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #07142B; --paper-2: #0A1A36; --surface: #0C1E40; --surface-2: #10264F;
+    --ink: #E5ECF8; --ink-2: #B4C2DC; --muted: #8C9DBF; --line: #1B3263;
+    --heading: #93C5FD; --accent: #60A5FA; --accent-soft: #10264F; --accent-line: #1E3A8A;
+    --head-bg: rgba(7, 20, 43, 0.88); --shadow: 0 18px 40px -24px rgba(0, 0, 0, 0.8);
+    --ok: #4ADE80; --ok-soft: #0E2A1A; --neg: #F87171; --neg-soft: #371416; --wip: #FBBF24; --wip-soft: #30250A;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #07142B; --paper-2: #0A1A36; --surface: #0C1E40; --surface-2: #10264F;
+  --ink: #E5ECF8; --ink-2: #B4C2DC; --muted: #8C9DBF; --line: #1B3263;
+  --heading: #93C5FD; --accent: #60A5FA; --accent-soft: #10264F; --accent-line: #1E3A8A;
+  --head-bg: rgba(7, 20, 43, 0.88); --shadow: 0 18px 40px -24px rgba(0, 0, 0, 0.8);
+  --ok: #4ADE80; --ok-soft: #0E2A1A; --neg: #F87171; --neg-soft: #371416; --wip: #FBBF24; --wip-soft: #30250A;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: var(--step-0); line-height: 1.62; -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: #07142B; }
+a { color: var(--accent); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 500; text-wrap: balance; margin: 0; line-height: 1.15; }
+p { margin: 0; }
+button { font: inherit; color: inherit; }
+.wrap { max-width: 1120px; margin-inline: auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.mono { font-family: var(--font-mono); }
+.eyebrow { font-family: var(--font-mono); font-size: var(--step--1); letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); }
+section[id], main[id] { scroll-margin-top: 72px; }
+
+/* ---------- news bar ---------- */
+.ticker { display: flex; align-items: stretch; min-height: 36px; color: var(--band-ink); font-size: 0.8rem;
+  background: linear-gradient(90deg, #07142B, #0C2350 30%, #143A8B 50%, #0C2350 70%, #07142B); background-size: 200% 100%;
+  animation: pan 16s ease-in-out infinite; }
+@keyframes pan { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+.ticker-tab { flex: none; display: inline-flex; align-items: center; gap: 7px; padding: 0 14px 0 max(14px, env(safe-area-inset-left, 0px)); background: linear-gradient(90deg, #C2410C, #F97316); color: #FFFFFF; font-family: var(--font-mono); font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap; }
+.ticker-tab::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #FFFFFF; }
+.ticker-text { flex: 1; min-width: 0; align-self: center; padding: 0 14px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #DCE6F7; }
+.ticker-text b { color: var(--gold); font-weight: 600; }
+.ticker-cta { flex: none; align-self: center; margin-right: max(12px, env(safe-area-inset-right, 0px)); padding: 3px 12px; border-radius: 999px; background: var(--gold); color: #07142B; font-weight: 600; font-size: 0.76rem; text-decoration: none; white-space: nowrap; }
+.ticker-cta:hover { background: #FDE047; text-decoration: none; }
+.t-short { display: none; }
+@media (max-width: 720px) { .t-long { display: none; } .t-short { display: inline; } }
+
+/* ---------- header ---------- */
+.site-head { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 6; background: var(--head-bg); -webkit-backdrop-filter: saturate(1.5) blur(12px); backdrop-filter: saturate(1.5) blur(12px); border-bottom: 1px solid var(--line); }
+.site-head .wrap { display: flex; align-items: center; gap: 20px; padding-block: 10px; }
+.brand { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; color: var(--heading); text-decoration: none; white-space: nowrap; }
+.brand .mark { display: inline-grid; place-items: center; width: 32px; height: 32px; border-radius: 9px; background: var(--grad); color: #FFFFFF; font-size: 0.86rem; font-weight: 600; letter-spacing: 0.02em; box-shadow: 0 6px 14px -8px rgba(31, 46, 184, 0.8); }
+.nav { display: flex; align-items: center; gap: 2px 18px; margin-left: auto; overflow-x: auto; scrollbar-width: none; min-width: 0; }
+.nav::-webkit-scrollbar { display: none; }
+.nav a { color: var(--ink-2); text-decoration: none; font-size: 0.9rem; font-weight: 500; white-space: nowrap; padding-block: 6px; border-bottom: 2px solid transparent; }
+.nav a:hover { color: var(--accent); }
+.nav a[aria-current="true"] { color: var(--accent); border-bottom-color: var(--accent); }
+.nav a.nav-cta { padding: 6px 16px; border: 0; border-radius: 999px; background: var(--grad); color: #FFFFFF; }
+.nav a.nav-cta:hover { background: var(--grad-hover); color: #FFFFFF; }
+.icon-btn { flex: none; display: inline-grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--ink-2); cursor: pointer; }
+.icon-btn:hover { border-color: var(--accent-2); color: var(--accent); }
+.icon-btn svg { width: 18px; height: 18px; }
+.progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; }
+.progress span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #2563EB, #22D3EE); }
+
+/* ---------- hero ---------- */
+.hero-wrap { background: radial-gradient(ellipse 45% 70% at 90% 15%, rgba(59, 130, 246, 0.15), transparent 70%), radial-gradient(ellipse 35% 55% at 0% 100%, rgba(34, 211, 238, 0.10), transparent 70%), var(--paper); }
+.hero { padding-block: 56px 52px; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 56px; align-items: center; }
+.hero-main { display: grid; gap: 18px; min-width: 0; }
+.badge { display: inline-flex; align-items: center; gap: 10px; justify-self: start; padding: 5px 14px; border: 1px solid var(--accent-line); border-radius: 999px; background: var(--accent-soft); font-size: 0.86rem; font-weight: 500; color: var(--heading); }
+.badge::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #22C55E; box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.18); flex: none; }
+.hero h1 { font-size: var(--step-4); letter-spacing: -0.015em; color: var(--heading); }
+.role { font-family: var(--font-display); font-style: italic; font-size: clamp(1.15rem, 2.2vw, 1.45rem); color: var(--ink-2); }
+.lede { font-size: clamp(1.08rem, 1.8vw, 1.25rem); line-height: 1.55; color: var(--ink); max-width: 46ch; }
+.hero-facts { font-size: 0.92rem; color: var(--muted); }
+
+.seg { display: inline-flex; padding: 4px; gap: 2px; border: 1px solid var(--accent-line); border-radius: 999px; background: var(--accent-soft); justify-self: start; flex-wrap: wrap; margin-top: 6px; }
+.seg [role="tab"] { border: 0; background: transparent; padding: 7px 16px; border-radius: 999px; cursor: pointer; font-size: 0.9rem; font-weight: 500; color: var(--ink-2); }
+.seg [role="tab"]:hover { color: var(--accent); }
+.seg [role="tab"][aria-selected="true"] { background: var(--grad); color: #FFFFFF; box-shadow: 0 8px 16px -10px rgba(31, 46, 184, 0.9); }
+.aud-panel { display: grid; gap: 16px; border-left: 3px solid var(--accent-2); padding-left: 16px; max-width: 64ch; }
+.aud-panel ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.aud-panel li { color: var(--ink); display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 10px; font-size: 0.97rem; }
+.aud-panel li b { font-family: var(--font-mono); font-weight: 500; font-size: 0.74rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); padding-top: 3px; }
+@media (max-width: 520px) { .aud-panel li { grid-template-columns: minmax(0, 1fr); gap: 0; } }
+
+.cta { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 9px 20px; border-radius: 999px; font-weight: 500; font-size: 0.93rem; text-decoration: none; border: 1.5px solid var(--accent-line); color: var(--accent); background: var(--surface); cursor: pointer; transition: border-color .2s, box-shadow .2s; }
+.btn:hover { border-color: var(--accent-2); text-decoration: none; }
+.btn.primary { background: var(--grad); border-color: transparent; color: #FFFFFF; box-shadow: 0 10px 22px -12px rgba(31, 46, 184, 0.75); }
+.btn.primary:hover { background: var(--grad-hover); }
+.btn.small { padding: 5px 13px; font-size: 0.84rem; }
+.btn svg { width: 16px; height: 16px; }
+
+.hero-side { display: grid; gap: 20px; justify-items: start; }
+.portrait { position: relative; width: min(340px, 100%); aspect-ratio: 1; border-radius: 50%; padding: 6px; background: conic-gradient(from 210deg, #1F2EB8, #3B82F6, #22D3EE, #3B82F6, #1F2EB8); box-shadow: 0 34px 70px -28px rgba(31, 46, 184, 0.6); }
+.portrait img { display: block; width: 100%; height: 100%; max-width: 100%; object-fit: cover; border-radius: 50%; border: 6px solid var(--paper); }
+.links { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; width: min(340px, 100%); }
+.link-btn { display: grid; justify-items: center; gap: 6px; padding: 12px 4px 10px; border: 1.5px solid var(--accent-line); border-radius: var(--radius); background: var(--surface); color: var(--accent); font-size: 0.76rem; font-weight: 500; text-decoration: none; box-shadow: 0 10px 20px -16px rgba(31, 46, 184, 0.6); transition: border-color .2s, transform .2s, box-shadow .2s; }
+.link-btn .ic { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--accent-soft); }
+.link-btn svg { width: 17px; height: 17px; }
+.link-btn:hover { border-color: var(--accent-2); transform: translateY(-2px); box-shadow: var(--shadow); text-decoration: none; }
+@media (max-width: 880px) {
+  .hero { padding-block: 36px 40px; }
+  .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 26px; }
+  .hero-side { order: -1; grid-template-columns: 148px minmax(0, 1fr); align-items: center; gap: 18px; width: 100%; }
+  .portrait { width: 148px; padding: 4px; }
+  .portrait img { border-width: 4px; }
+  .links { width: 100%; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .link-btn { padding: 8px 4px 7px; gap: 4px; }
+  .link-btn .ic { width: 28px; height: 28px; }
+}
+@media (max-width: 420px) {
+  .hero-side { grid-template-columns: 112px minmax(0, 1fr); }
+  .portrait { width: 112px; }
+}
+
+/* ---------- stat cards ---------- */
+.figures { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 48px; }
+.figure-cell { display: grid; gap: 6px; align-content: start; min-width: 0; padding: 18px 18px 16px; border: 1.5px solid var(--accent-line); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); }
+.figure-num { font-family: var(--font-mono); font-size: 1.85rem; font-weight: 500; font-variant-numeric: tabular-nums; color: var(--heading); line-height: 1.1; }
+.figure-cap { font-size: 0.86rem; color: var(--ink-2); line-height: 1.45; }
+@media (max-width: 860px) { .figures { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 460px) { .figures { grid-template-columns: minmax(0, 1fr); gap: 10px; margin-top: 32px; } }
+
+/* ---------- live ECG strip (full bleed, navy) ---------- */
+.strip { position: relative; background: linear-gradient(90deg, #07142B, #0C2350 30%, #143A8B 50%, #0C2350 70%, #07142B); }
+.strip canvas { display: block; width: 100%; height: 160px; }
+.strip-top { position: absolute; inset: 10px 0 auto 0; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; pointer-events: none; }
+.strip-label, .strip-ctrl { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.05em; background: rgba(7, 20, 43, 0.86); padding: 3px 8px; border-radius: 6px; border: 1px solid var(--band-line); }
+.strip-label { color: var(--trace); }
+.strip-ctrl { display: inline-flex; align-items: center; gap: 8px; color: var(--band-muted); pointer-events: auto; }
+.strip-ctrl input { width: 110px; accent-color: #22D3EE; }
+.strip-ctrl output { min-width: 14ch; font-variant-numeric: tabular-nums; color: var(--band-ink); }
+
+/* ---------- sections ---------- */
+section.block { padding-block: 84px; background: var(--paper); }
+section.block.tint { background: var(--paper-2); }
+@media (max-width: 640px) {
+  section.block { padding-block: 56px; }
+  .results { margin-top: 44px; }
+}
+.sec-head { display: grid; gap: 10px; margin-bottom: 34px; }
+.sec-head .eyebrow { display: flex; align-items: center; gap: 10px; color: var(--accent); }
+.sec-head .eyebrow::before { content: ""; flex: none; width: 24px; height: 3px; border-radius: 2px; background: var(--grad); }
+.sec-head h2 { font-size: var(--step-3); color: var(--heading); }
+.sec-head p { color: var(--ink-2); max-width: 66ch; font-size: 1.05rem; }
+.interests { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px 40px; }
+.interest { position: relative; display: grid; gap: 6px; padding-top: 16px; border-top: 2px solid var(--line); min-width: 0; align-content: start; }
+.interest::before { content: ""; position: absolute; left: 0; top: -2px; width: 56px; height: 2px; background: var(--grad); }
+.interest h3 { font-size: var(--step-1); font-weight: 600; color: var(--ink); }
+.interest p { color: var(--ink-2); }
+@media (max-width: 720px) { .interests { grid-template-columns: minmax(0, 1fr); } }
+
+.thesis-meta { display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: 0.92rem; color: var(--muted); }
+.thesis-meta b { color: var(--ink); font-weight: 500; }
+.prose { display: grid; gap: 14px; max-width: 66ch; color: var(--ink-2); font-size: 1.05rem; }
+h3.sub { font-size: var(--step-2); color: var(--heading); }
+.sub-head { display: grid; gap: 6px; margin-bottom: 18px; }
+.sub-head p { color: var(--ink-2); max-width: 70ch; }
+.card { border: 1.5px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+
+/* ---------- interactive pipeline ---------- */
+.pipeline { display: flex; align-items: stretch; gap: 8px; margin-top: 40px; flex-wrap: wrap; }
+.pipe-step { flex: 1 1 150px; min-width: 0; text-align: left; border: 1.5px solid var(--line); background: var(--surface); border-radius: var(--radius); padding: 12px 14px; display: grid; gap: 3px; align-content: start; cursor: pointer; transition: border-color .2s, box-shadow .2s; }
+.pipe-step .eyebrow { font-size: 0.68rem; }
+.pipe-step strong { font-weight: 600; font-size: 0.97rem; color: var(--ink); }
+.pipe-step span:last-child { font-size: 0.84rem; color: var(--ink-2); line-height: 1.4; }
+.pipe-step:hover { border-color: var(--accent-2); }
+.pipe-step[aria-selected="true"] { background: var(--grad); border-color: transparent; box-shadow: 0 14px 26px -16px rgba(31, 46, 184, 0.85); }
+.pipe-step[aria-selected="true"] strong, .pipe-step[aria-selected="true"] span:last-child { color: #FFFFFF; }
+.pipe-step[aria-selected="true"] .eyebrow { color: #C7D7FE; }
+.pipe-arrow { align-self: center; color: var(--accent-2); font-family: var(--font-mono); flex: none; }
+.pipe-panel { margin-top: 12px; padding: 20px; display: grid; gap: 14px; box-shadow: var(--shadow); }
+.pipe-panel p { color: var(--ink-2); max-width: 75ch; }
+.pipe-panel .two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.pipe-panel .two > div { min-width: 0; display: grid; gap: 6px; align-content: start; }
+@media (max-width: 760px) {
+  .pipeline { flex-direction: column; }
+  .pipe-step { flex: none; }
+  .pipe-arrow { transform: rotate(90deg); align-self: flex-start; margin-left: 18px; }
+  .pipe-panel .two { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 640px) {
+  .pipe-panel { padding: 16px; }
+  .pipe-panel table.data { min-width: 0; }
+  .pipe-panel table.data td.n { white-space: normal; }
+}
+.kv { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 16px; margin: 0; font-size: 0.93rem; }
+.kv dt { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); padding-top: 2px; }
+.kv dd { margin: 0; color: var(--ink); }
+pre.code { margin: 0; padding: 14px 16px; overflow-x: auto; background: var(--surface-2); border: 1px solid var(--line); border-radius: 8px; font-family: var(--font-mono); font-size: 0.78rem; line-height: 1.55; color: var(--ink); }
+.cap { font-size: 0.84rem; color: var(--muted); }
+
+/* ---------- findings ---------- */
+.findings { list-style: none; margin: 0; padding: 0; display: grid; border-top: 1px solid var(--line); }
+.findings li { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 18px; padding-block: 16px; border-bottom: 1px solid var(--line); }
+.findings .tag { font-family: var(--font-mono); font-size: 0.82rem; color: var(--accent); letter-spacing: 0.02em; padding-top: 3px; }
+.findings p { color: var(--ink-2); }
+.num { font-family: var(--font-mono); color: var(--heading); font-weight: 500; font-variant-numeric: tabular-nums; }
+@media (max-width: 640px) { .findings li { grid-template-columns: minmax(0, 1fr); gap: 4px; } }
+
+/* ---------- results tabs ---------- */
+.results { margin-top: 56px; }
+.tabbar { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--line); margin-bottom: 18px; }
+.tabbar [role="tab"] { border: 0; background: transparent; padding: 10px 14px; cursor: pointer; font-size: 0.93rem; color: var(--ink-2); border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.tabbar [role="tab"][aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent); font-weight: 500; }
+.tabbar [role="tab"]:hover { color: var(--accent); }
+.scen { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+.scen button, .filters button { border: 1px solid var(--accent-line); background: var(--surface); color: var(--ink-2); border-radius: 999px; padding: 5px 13px; font-size: 0.85rem; cursor: pointer; }
+.scen button:hover, .filters button:hover { border-color: var(--accent-2); color: var(--accent); }
+.scen button[aria-pressed="true"], .filters button[aria-pressed="true"] { background: var(--grad); border-color: transparent; color: #FFFFFF; }
+.scen-label { font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); align-self: center; margin-right: 4px; }
+.db { display: grid; gap: 2px; }
+.db-row { display: grid; grid-template-columns: 230px minmax(0, 1fr) 76px; align-items: center; gap: 14px; padding-block: 7px; border-bottom: 1px solid var(--line); }
+.db-row.axis { border-bottom: 0; padding-block: 0 4px; }
+.db-name { font-size: 0.9rem; color: var(--ink-2); min-width: 0; }
+.db-row.hl .db-name { color: var(--heading); font-weight: 600; }
+.track { position: relative; height: 22px; }
+.track::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; border-top: 1px solid var(--line); }
+.track .ref { position: absolute; top: 0; bottom: 0; border-left: 1px dashed var(--ink-2); opacity: 0.55; }
+.track .seg-bar { position: absolute; top: calc(50% - 2px); height: 4px; border-radius: 2px; background: var(--muted); transition: left .45s ease, width .45s ease, background-color .45s; }
+.track .seg-bar.gain { background: var(--ok); }
+.track .seg-bar.loss { background: var(--neg); }
+.track .dot { position: absolute; top: 50%; width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: 50%; transition: left .45s ease; }
+.track .dot.base { border: 2px solid var(--ink-2); background: var(--surface); }
+.track .dot.now { background: var(--ink); border: 2px solid var(--surface); }
+.db-row.hl .dot.now { background: var(--accent-2); }
+.db-delta { font-family: var(--font-mono); font-size: 0.86rem; text-align: right; font-variant-numeric: tabular-nums; color: var(--muted); }
+.db-delta.gain { color: var(--ok); }
+.db-delta.loss { color: var(--neg); }
+.ticks { position: relative; height: 18px; }
+.ticks span { position: absolute; transform: translateX(-50%); font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); }
+.ticks span:first-child { transform: none; }
+.db-legend { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 12px; font-size: 0.84rem; color: var(--muted); }
+.db-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; }
+.db-legend i.o { border: 2px solid var(--ink-2); }
+.db-legend i.f { background: var(--ink); }
+.db-legend i.d { width: 0; height: 12px; border-radius: 0; border-left: 1px dashed var(--ink-2); }
+.db-note { margin-top: 14px; padding: 12px 14px; background: var(--accent-soft); border-left: 3px solid var(--accent-2); border-radius: 0 8px 8px 0; color: var(--ink); font-size: 0.95rem; min-height: 3.2em; }
+@media (max-width: 640px) {
+  .db-row { grid-template-columns: minmax(0, 1fr) 64px; grid-template-areas: "name delta" "track track"; row-gap: 4px; }
+  .db-row .db-name { grid-area: name; }
+  .db-row .track, .db-row .ticks { grid-area: track; }
+  .db-row .db-delta { grid-area: delta; }
+  .db-row.axis .db-name, .db-row.axis .db-delta { display: none; }
+}
+.chart-scroll { overflow-x: auto; border: 1.5px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+.chart-scroll svg { display: block; width: 100%; min-width: 600px; height: auto; }
+svg .ax { stroke: var(--line); stroke-width: 1; }
+svg .zero { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 4; }
+svg .bb { stroke: var(--ink-2); stroke-width: 1.2; stroke-dasharray: 6 5; }
+svg .tk { fill: var(--muted); font-family: var(--font-mono); font-size: 11px; }
+svg .axt { fill: var(--ink-2); font-family: var(--font-body); font-size: 12px; }
+svg .lab { fill: var(--ink-2); font-family: var(--font-body); font-size: 12px; }
+svg .lab.hl { fill: var(--heading); font-weight: 600; }
+svg .pt { fill: var(--ink-2); stroke: var(--surface); stroke-width: 2; }
+svg .pt.hl { fill: var(--accent-2); }
+svg .grid { stroke: var(--line); stroke-width: 1; opacity: 0.7; }
+.table-scroll { overflow-x: auto; }
+table.data { width: 100%; border-collapse: collapse; font-size: 0.92rem; min-width: 540px; }
+table.data th, table.data td { text-align: left; padding: 9px 12px 9px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.data th { font-family: var(--font-mono); font-weight: 500; font-size: 0.74rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+table.data td.n { font-family: var(--font-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+table.data tr.hl td { color: var(--heading); font-weight: 500; }
+
+/* ---------- audit ---------- */
+.audit { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 40px; border-top: 1px solid var(--line); }
+.audit-item { display: grid; gap: 6px; padding-block: 18px; border-bottom: 1px solid var(--line); min-width: 0; align-content: start; }
+.audit-item h3 { font-family: var(--font-body); font-size: 1rem; font-weight: 600; color: var(--ink); }
+.audit-item p { color: var(--ink-2); font-size: 0.97rem; }
+.audit-item .fix { color: var(--ink); }
+.audit-item .fix::before { content: "FIX  "; font-family: var(--font-mono); font-size: 0.74rem; color: var(--ok); letter-spacing: 0.05em; }
+@media (max-width: 720px) { .audit { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- publications ---------- */
+.pubs { list-style: none; margin: 0; padding: 0; display: grid; border-top: 1px solid var(--line); }
+.pub { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 18px; padding-block: 20px; border-bottom: 1px solid var(--line); }
+.pub > div { min-width: 0; display: grid; gap: 6px; }
+.pub-title { font-family: var(--font-display); font-size: 1.22rem; line-height: 1.3; color: var(--ink); }
+.pub-meta { color: var(--ink-2); font-size: 0.94rem; }
+.pub-meta .me { color: var(--ink); font-weight: 600; }
+details.cite summary { cursor: pointer; font-size: 0.86rem; color: var(--accent); list-style: none; display: inline-flex; gap: 6px; align-items: center; }
+details.cite summary::-webkit-details-marker { display: none; }
+details.cite summary::before { content: "+"; font-family: var(--font-mono); }
+details.cite[open] summary::before { content: "−"; }
+details.cite .cite-body { display: grid; gap: 8px; margin-top: 10px; }
+@media (max-width: 640px) { .pub { grid-template-columns: minmax(0, 1fr); gap: 8px; } }
+.pill { display: inline-block; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.04em; padding: 3px 10px; border-radius: 999px; white-space: nowrap; align-self: start; justify-self: start; }
+.pill.ok { background: var(--ok-soft); color: var(--ok); }
+.pill.wip { background: var(--wip-soft); color: var(--wip); }
+.pill.base { background: var(--accent-soft); color: var(--heading); }
+
+/* ---------- projects ---------- */
+.filters { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 18px; }
+.filters .count { margin-left: auto; font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); }
+.projects { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.project { padding: 20px; display: grid; grid-template-rows: auto auto 1fr auto; gap: 10px; min-width: 0; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+.project:hover { transform: translateY(-3px); border-color: var(--accent-2); box-shadow: var(--shadow); }
+.project h3 { font-family: var(--font-body); font-size: 1.05rem; font-weight: 600; line-height: 1.3; color: var(--ink); }
+.project p { color: var(--ink-2); font-size: 0.93rem; line-height: 1.55; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tags span { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 1px 9px; }
+.earlier { margin-top: 22px; color: var(--ink-2); font-size: 0.95rem; max-width: 80ch; }
+@media (max-width: 980px) { .projects { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 620px) { .projects { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- skills ---------- */
+.skills { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 30px 40px; }
+.skill-group { display: grid; gap: 10px; align-content: start; min-width: 0; }
+.skill-group h3 { font-family: var(--font-mono); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.skill-group ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.skill-group li { font-size: 0.88rem; background: var(--accent-soft); color: var(--heading); border: 1px solid var(--accent-line); border-radius: 999px; padding: 3px 11px; }
+@media (max-width: 900px) { .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .skills { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- education ---------- */
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; border-top: 1px solid var(--line); }
+.timeline li { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 18px; padding-block: 20px; border-bottom: 1px solid var(--line); }
+.timeline .when { font-family: var(--font-mono); font-size: 0.86rem; color: var(--muted); padding-top: 4px; }
+.timeline h3 { font-size: var(--step-2); color: var(--heading); }
+.timeline p { color: var(--ink-2); margin-top: 6px; }
+@media (max-width: 640px) { .timeline li { grid-template-columns: minmax(0, 1fr); gap: 6px; } }
+
+/* ---------- contact (navy band; components re-theme through the tokens) ---------- */
+section.block.dark {
+  --paper: #07142B; --surface: rgba(255, 255, 255, 0.04); --surface-2: rgba(255, 255, 255, 0.06);
+  --ink: var(--band-ink); --ink-2: #C7D3EA; --muted: var(--band-muted); --line: var(--band-line);
+  --heading: #FFFFFF; --accent: #93C5FD; --accent-2: #60A5FA; --accent-line: rgba(147, 197, 253, 0.45); --ok: #4ADE80;
+  background: radial-gradient(ellipse 50% 80% at 85% 0%, rgba(59, 130, 246, 0.25), transparent 70%), linear-gradient(180deg, #0C2350, #07142B);
+  color: var(--ink);
+}
+section.block.dark .sec-head h2 { font-size: clamp(2.2rem, 5vw, 3.2rem); }
+.contact { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.contact.c2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.contact + .contact { border-top: 0; }
+.contact-cell { padding: 18px 18px 18px 0; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.contact-cell + .contact-cell { padding-left: 18px; border-left: 1px solid var(--line); }
+.contact-val { font-size: 0.98rem; color: var(--ink); overflow-wrap: anywhere; }
+.copy-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.copy-status { font-family: var(--font-mono); font-size: 0.76rem; color: var(--ok); min-height: 1.2em; }
+@media (max-width: 760px) {
+  .contact, .contact.c2 { grid-template-columns: minmax(0, 1fr); }
+  .contact-cell + .contact-cell { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
+}
+footer { padding-block: 40px 56px; background: #07142B; color: var(--band-muted); font-size: 0.86rem; border-top: 1px solid var(--band-line); }
+footer .wrap { display: grid; gap: 8px; }
+footer a { color: #93C5FD; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .ticker { animation: none; }
+  .track .seg-bar, .track .dot, .project, .link-btn, .pipe-step, .btn { transition: none; }
+  .project:hover, .link-btn:hover { transform: none; }
+}
+</style>
+</head>
+<body>
+<div class="ticker">
+  <span class="ticker-tab">ESC 2026</span>
+  <p class="ticker-text"><b class="t-long">First-author abstract presented</b><b class="t-short">Abstract presented</b><span class="t-long"> in the session “Artificial intelligence-powered assessment of cardiac function”, ESC Congress 2026, 31 August.</span></p>
+  <a class="ticker-cta" href="https://esc365.escardio.org/presentation/326198" target="_blank" rel="noopener">View<span class="t-long"> on ESC 365</span> <span aria-hidden="true">→</span></a>
+</div>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="mark" aria-hidden="true">HA</span>Hamza Anjum</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#research">Research</a>
+      <a href="#thesis">Thesis</a>
+      <a href="#audit">Audit</a>
+      <a href="#publications">Publications</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a class="nav-cta" href="#contact">Contact</a>
+    </nav>
+    <button class="icon-btn" id="theme-btn" type="button" aria-label="Switch colour theme">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path id="theme-icon" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+  </div>
+  <div class="progress" aria-hidden="true"><span id="progress"></span></div>
+</header>
+
+<main id="top">
+  <div class="hero-wrap">
+    <div class="wrap hero">
+      <div class="hero-grid">
+        <div class="hero-main">
+          <p class="badge">Open to PhD positions and research roles</p>
+          <h1>Hamza Anjum</h1>
+          <p class="role">Biomedical Signal Processing &amp; Machine Learning Researcher</p>
+          <p class="lede">I build machine learning for cardiology that clinicians can read, check, and correct.</p>
+          <p class="hero-facts">MS Electrical Engineering, NUST SEECS · Islamabad, Pakistan (UTC+5)</p>
+
+          <div class="seg" role="tablist" aria-label="Choose a view" data-tabs>
+            <button role="tab" id="tab-prof" aria-selected="true" aria-controls="aud-prof" type="button">For professors</button>
+            <button role="tab" id="tab-ind" aria-selected="false" aria-controls="aud-ind" tabindex="-1" type="button">For industry</button>
+          </div>
+          <div class="aud-panel" role="tabpanel" id="aud-prof" aria-labelledby="tab-prof">
+            <ul>
+              <li><b>Question</b><span>Can a concept-based ECG model match a black box and still improve when a clinician corrects it?</span></li>
+              <li><b>Evidence</b><span>Nine model families, five seeds each, 5,442 held-out patients, and a model-selection rule fixed before the final runs.</span></li>
+              <li><b>Output</b><span>First-author abstract presented at ESC Congress 2026; a journal manuscript is in preparation.</span></li>
+            </ul>
+            <div class="cta">
+              <a class="btn primary" href="#thesis">Read the research</a>
+              <a class="btn" href="#publications">Publications</a>
+              <a class="btn" href="https://scholar.google.com/citations?user=jBF01rsAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a>
+            </div>
+          </div>
+          <div class="aud-panel" role="tabpanel" id="aud-ind" aria-labelledby="tab-ind" hidden>
+            <ul>
+              <li><b>Built</b><span>End-to-end ML on 82,543 clinical ECGs: data audit, GPU training, evaluation, and a FastAPI prototype.</span></li>
+              <li><b>LLMs</b><span>Hugging Face models in practice: MedGemma, BioMistral, and Qwen, with LoRA fine-tuning and hallucination scoring.</span></li>
+              <li><b>Method</b><span>Resumable Colab pipelines, smoke tests before every full run, and bootstrap confidence intervals on every metric.</span></li>
+            </ul>
+            <div class="cta">
+              <a class="btn primary" href="#projects">See projects</a>
+              <a class="btn" href="https://github.com/Hamza-anjum" target="_blank" rel="noopener">GitHub</a>
+              <a class="btn" href="#contact">Contact</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-side">
+          <div class="portrait"><img src="photo.jpg" alt="Portrait of Hamza Anjum" width="720" height="720"></div>
+          <div class="links">
+            <a class="link-btn" href="https://www.linkedin.com/in/hamza-anjum-1b160619a/" target="_blank" rel="noopener">
+              <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3v-11zm6.5 0h3.8v1.5h.06c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.77 2.65 4.77 6.1v5.46h-4v-4.84c0-1.16-.02-2.64-1.61-2.64-1.61 0-1.86 1.26-1.86 2.56v4.92h-4v-11z"/></svg></span>LinkedIn</a>
+            <a class="link-btn" href="https://github.com/Hamza-anjum" target="_blank" rel="noopener">
+              <span class="ic"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></span>GitHub</a>
+            <a class="link-btn" href="https://scholar.google.com/citations?user=jBF01rsAAAAJ&amp;hl=en" target="_blank" rel="noopener">
+              <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3 1 9l11 6 9-4.91V17h2V9L12 3z"/></svg></span>Scholar</a>
+            <a class="link-btn" href="#contact">
+              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M3 5.5h18v13H3zM3.5 6l8.5 7 8.5-7"/></svg></span>Email</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="figures">
+        <div class="figure-cell"><span class="figure-num">82,543</span><span class="figure-cap">ECGs from 36,286 patients in the EchoNext training, validation, and test splits</span></div>
+        <div class="figure-cell"><span class="figure-num">9 × 5</span><span class="figure-cap">model families × random seeds, each tested on the same 5,442 patients</span></div>
+        <div class="figure-cell"><span class="figure-num">+1.73</span><span class="figure-cap">AUROC points for the concept embedding model when measured echo values replace its predicted concepts</span></div>
+        <div class="figure-cell"><span class="figure-num">0.841</span><span class="figure-cap">mean AUROC of the five-seed concept embedding ensemble across AS, AR, MR, and TR</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="strip">
+    <canvas id="ecg" role="img" aria-label="Animated synthetic ECG trace; the rate slider changes the heart rate"></canvas>
+    <div class="wrap strip-top">
+      <span class="strip-label">LEAD II · 25 mm/s · 10 mm/mV · synthetic</span>
+      <label class="strip-ctrl" for="hr">Rate <input type="range" id="hr" min="50" max="120" step="1" value="72"><output id="hr-out" for="hr">72 bpm · RR 833 ms</output></label>
+    </div>
+  </div>
+
+  <section class="block" id="research">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Research focus</p>
+        <h2>Models a clinician can audit</h2>
+        <p>Medical AI earns trust when a clinician can see why it decided and can fix it when it is wrong. I study models whose reasoning passes through clinical concepts, and I test whether those concepts carry only what their names say.</p>
+      </div>
+      <div class="interests">
+        <div class="interest"><h3>Concept-based models for physiological signals</h3><p>Concept bottleneck and concept embedding models for the ECG, with intervention tests that measure whether a clinician's correction improves the diagnosis.</p></div>
+        <div class="interest"><h3>Concept leakage and model audits</h3><p>How concept scores smuggle label information past a bottleneck, and the audits that catch it before a result reaches a paper.</p></div>
+        <div class="interest"><h3>Grounded clinical language generation</h3><p>Language models that write only what a structured evidence record supports, scored sentence by sentence for unsupported findings, contradictions, and coverage.</p></div>
+        <div class="interest"><h3>Calibration and clinical evaluation</h3><p>Calibrated probabilities, operating points fixed on validation data, multi-seed comparisons, and confidence intervals that let a cardiologist weigh a result.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block tint" id="thesis">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">MS thesis · 2025–2026</p>
+        <h2>Explainable valvular heart disease diagnosis from the 12-lead ECG</h2>
+        <div class="thesis-meta">
+          <span><b>Supervisor</b> Dr. Nazia Perwaiz, NUST SEECS</span>
+          <span><b>Data</b> EchoNext, Columbia University Irving Medical Center (PhysioNet)</span>
+          <span><b>Compute</b> PyTorch on Colab RTX PRO 6000 GPUs</span>
+        </div>
+      </div>
+      <div class="prose">
+        <p>Echocardiography confirms valve disease, but it needs an ultrasound machine, a sonographer, and a cardiologist. The 12-lead ECG takes seconds and is available in most clinics. Deep networks can detect valve disease from the ECG, but they return a score without a reason a cardiologist can check.</p>
+        <p>My thesis places named clinical concepts between the signal and the diagnosis. A clinician can read each concept, overwrite it with a measured value, and watch the diagnosis update. A language model then turns the concepts into a report, and a checker compares every sentence with the evidence it received.</p>
+      </div>
+
+      <div class="pipeline" role="tablist" aria-label="Pipeline stages" data-tabs>
+        <button class="pipe-step" role="tab" id="ps-1" aria-selected="false" aria-controls="pp-1" tabindex="-1" type="button"><span class="eyebrow">Input</span><strong>12-lead ECG</strong><span>10 s at 250 Hz plus 7 values</span></button>
+        <span class="pipe-arrow" aria-hidden="true">→</span>
+        <button class="pipe-step" role="tab" id="ps-2" aria-selected="false" aria-controls="pp-2" tabindex="-1" type="button"><span class="eyebrow">Encoder</span><strong>ResNet1d-18</strong><span>About 8.8 million parameters</span></button>
+        <span class="pipe-arrow" aria-hidden="true">→</span>
+        <button class="pipe-step" role="tab" id="ps-3" aria-selected="true" aria-controls="pp-3" type="button"><span class="eyebrow">Concepts</span><strong>10 named findings</strong><span>4 echocardiographic, 6 ECG measurement</span></button>
+        <span class="pipe-arrow" aria-hidden="true">→</span>
+        <button class="pipe-step" role="tab" id="ps-4" aria-selected="false" aria-controls="pp-4" tabindex="-1" type="button"><span class="eyebrow">Diagnosis</span><strong>AS · AR · MR · TR</strong><span>Plus structural heart disease</span></button>
+        <span class="pipe-arrow" aria-hidden="true">→</span>
+        <button class="pipe-step" role="tab" id="ps-5" aria-selected="false" aria-controls="pp-5" tabindex="-1" type="button"><span class="eyebrow">Report</span><strong>Evidence Token → LLM</strong><span>Checked sentence by sentence</span></button>
+      </div>
+
+      <div class="card pipe-panel" role="tabpanel" id="pp-1" aria-labelledby="ps-1" hidden>
+        <p>Each record pairs a 12-lead ECG with an echocardiogram from the same patient. I split by patient, so no person appears in two splits, and the validation and test sets keep one ECG per patient.</p>
+        <dl class="kv">
+          <dt>Signal</dt><dd>12 leads, 10 s at 250 Hz (2,500 samples per lead), zero-phase band-pass 0.05–40 Hz</dd>
+          <dt>Tabular</dt><dd>Sex, age, ventricular rate, atrial rate, PR interval, QRS duration, QTc</dd>
+          <dt>Splits</dt><dd>72,475 training ECGs; 4,626 validation and 5,442 test patients</dd>
+          <dt>Labels</dt><dd>Moderate or greater AS, AR, MR, and TR from echocardiography reports</dd>
+        </dl>
+      </div>
+      <div class="card pipe-panel" role="tabpanel" id="pp-2" aria-labelledby="ps-2" hidden>
+        <p>A 1D residual network reads the waveform, a small MLP reads the tabular values, and the two join into one 576-dimensional vector. Every model family in the comparison shares this encoder, so differences come from the head and the training scheme alone.</p>
+        <dl class="kv">
+          <dt>Waveform</dt><dd>ResNet1d-18: stem, four residual stages from 64 to 512 channels, global average pooling</dd>
+          <dt>Tabular</dt><dd>MLP 7 → 128 → 64 with batch normalisation and dropout</dd>
+          <dt>Training</dt><dd>Focal loss, AdamW, cosine schedule, bf16, early stopping on validation AUROC</dd>
+          <dt>Seeds</dt><dd>Five per model family, with seed-paired comparisons</dd>
+        </dl>
+      </div>
+      <div class="card pipe-panel" role="tabpanel" id="pp-3" aria-labelledby="ps-3">
+        <p>None of the ten concepts uses a valve label. Where an echocardiogram lacks a measurement, the concept is masked from the loss, so a missing value never counts as a healthy one.</p>
+        <div class="table-scroll">
+          <table class="data">
+            <thead><tr><th>Concept</th><th>Definition</th><th>Source</th></tr></thead>
+            <tbody>
+              <tr><td>Left ventricular hypertrophy</td><td class="n">wall thickness ≥ 1.3 cm</td><td>Echo</td></tr>
+              <tr><td>LV systolic dysfunction</td><td class="n">LVEF ≤ 45%</td><td>Echo</td></tr>
+              <tr><td>Pulmonary hypertension</td><td class="n">PASP ≥ 45 mmHg</td><td>Echo</td></tr>
+              <tr><td>RV systolic dysfunction</td><td class="n">moderate or greater</td><td>Echo</td></tr>
+              <tr><td>Irregular atrial rhythm</td><td class="n">atrial–ventricular rate gap &gt; 20 bpm</td><td>ECG</td></tr>
+              <tr><td>First-degree AV block</td><td class="n">PR &gt; 200 ms</td><td>ECG</td></tr>
+              <tr><td>Wide QRS</td><td class="n">QRS ≥ 120 ms</td><td>ECG</td></tr>
+              <tr><td>Prolonged QTc</td><td class="n">&gt; 450 ms men, &gt; 460 ms women</td><td>ECG</td></tr>
+              <tr><td>Tachycardia</td><td class="n">rate &gt; 100 bpm</td><td>ECG</td></tr>
+              <tr><td>Bradycardia</td><td class="n">rate &lt; 50 bpm</td><td>ECG</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card pipe-panel" role="tabpanel" id="pp-4" aria-labelledby="ps-4" hidden>
+        <p>The primary model is a concept embedding model. Each concept owns two learned 16-dimensional embeddings, one for present and one for absent, mixed by the concept's probability. During training, a quarter of the measured concepts switch to their true values at random, so the model learns to use a clinician's correction.</p>
+        <dl class="kv">
+          <dt>Outputs</dt><dd>Probabilities for moderate or greater AS, AR, MR, and TR; a five-output variant adds composite structural heart disease</dd>
+          <dt>Selection</dt><dd>Highest five-seed AUROC among concept models within 5 points of the black box whose accuracy does not drop under correction; rule fixed before the final runs</dd>
+          <dt>Calibration</dt><dd>Platt scaling fitted on validation data; thresholds at 90% specificity chosen on validation</dd>
+        </dl>
+      </div>
+      <div class="card pipe-panel" role="tabpanel" id="pp-5" aria-labelledby="ps-5" hidden>
+        <p>The language model never sees the waveform or the network's hidden state. It reads one structured record, the Evidence Token, and a word-boundary checker scores its report for fabricated findings, contradictions of absent concepts, and missing findings.</p>
+        <div class="two">
+          <div>
+            <span class="eyebrow">Evidence Token</span>
+            <pre class="code">{
+  "Detected_Concepts": [
+    {"concept": "LVH", "probability": 0.81,
+     "clinical": "Left Ventricular Hypertrophy"},
+    {"concept": "QTc_Prolonged", "probability": 0.67,
+     "clinical": "Prolonged QTc Interval"}
+  ],
+  "Absent_Concepts": ["LV_Dysfunction",
+    "Pulm_Hypertension", "RV_Dysfunction", ...],
+  "Predicted_Valves": {"AS": 0.62, "AR": 0.04,
+                       "MR": 0.11, "TR": 0.08}
+}</pre>
+          </div>
+          <div>
+            <span class="eyebrow">Template report from the token</span>
+            <pre class="code">1. ECG FINDINGS:
+   (+) Left Ventricular Hypertrophy (confidence: 81%)
+   (+) Prolonged QTc Interval (confidence: 67%)
+2. ASSESSMENT:
+   Aortic Stenosis: 62% probability (moderate)
+   Aortic Regurgitation: 4% probability (low)
+   Mitral Regurgitation: 11% probability (low)
+   Tricuspid Regurgitation: 8% probability (low)
+4. RECOMMENDATION:
+   Echocardiographic confirmation recommended.</pre>
+          </div>
+        </div>
+        <p class="cap">Format example; the values are illustrative, not a patient record.</p>
+      </div>
+
+      <div style="margin-top: 56px">
+        <h3 class="sub" style="margin-bottom: 18px">What the experiments show</h3>
+        <ul class="findings">
+          <li><span class="tag">Accuracy</span><p>Across five seeds, the concept embedding model (CEM) reached mean AUROC <span class="num">0.827 ± 0.005</span> against <span class="num">0.821 ± 0.004</span> for a black box with the same encoder, and scored higher in all five seed pairs.</p></li>
+          <li><span class="tag">Clinician correction</span><p>Measured echo values in place of predicted concepts raised CEM accuracy by <span class="num">1.73 ± 0.21</span> AUROC points. Joint and sequential bottleneck models lost <span class="num">5.75</span> and <span class="num">6.91</span> points under the same correction.</p></li>
+          <li><span class="tag">Hidden leakage</span><p>A sequential model, whose concept stage never saw a valve label, still reached aortic stenosis AUROC <span class="num">0.821</span> from predicted concepts, above the <span class="num">0.754</span> reached from the true concepts. Soft concept scores carry label information that the concept names do not describe.</p></li>
+          <li><span class="tag">Screening point</span><p>At 90% specificity, fixed on validation data, the five-seed CEM ensemble found <span class="num">61.5%</span> of moderate or greater aortic stenosis with a negative predictive value of <span class="num">0.977</span>.</p></li>
+          <li><span class="tag">Structural disease</span><p>One model predicts the four valve lesions and composite structural heart disease, with AUROC <span class="num">0.841</span> against <span class="num">0.831</span> for the black box (DeLong p = 1.0 × 10<sup>−5</sup>).</p></li>
+          <li><span class="tag">Report safety</span><p>Under prompt instructions alone, three medical LLMs put out-of-evidence terms in <span class="num">14%–40%</span> of reports on 100 test cases. The Evidence Token template produced none across <span class="num">5,442</span> reports. Current work compares MedGemma, BioMistral, and a general LLM with sentence-level checks and LoRA fine-tuning.</p></li>
+        </ul>
+      </div>
+
+      <div class="results">
+        <div class="sub-head">
+          <h3 class="sub">Explore the results</h3>
+          <p>All values are mean test AUROC over five seeds on 5,442 patients. Measured values replace predictions only where the echocardiography report contains them.</p>
+        </div>
+        <div class="tabbar" role="tablist" aria-label="Result views" data-tabs>
+          <button role="tab" id="rt-1" aria-selected="true" aria-controls="rp-1" type="button">Intervention explorer</button>
+          <button role="tab" id="rt-2" aria-selected="false" aria-controls="rp-2" tabindex="-1" type="button">Accuracy vs. correction</button>
+          <button role="tab" id="rt-3" aria-selected="false" aria-controls="rp-3" tabindex="-1" type="button">Table</button>
+        </div>
+        <div role="tabpanel" id="rp-1" aria-labelledby="rt-1">
+          <div class="scen" id="scen" role="group" aria-label="Measured echo findings supplied by the clinician">
+            <span class="scen-label">Clinician supplies</span>
+          </div>
+          <div class="db" id="db"></div>
+          <div class="db-legend">
+            <span><i class="o"></i>Model alone</span>
+            <span><i class="f"></i>With measured findings</span>
+            <span><i class="d"></i>Black box, same encoder (0.821)</span>
+          </div>
+          <p class="db-note" id="db-note" aria-live="polite"></p>
+        </div>
+        <div role="tabpanel" id="rp-2" aria-labelledby="rt-2" hidden>
+          <div class="chart-scroll" id="chart" role="img" aria-label="Scatter plot of mean AUROC against the change in AUROC when measured echo values replace predicted concepts, for eight concept-model families. The concept embedding model sits highest and furthest right."></div>
+          <p class="cap" style="margin-top: 10px">Higher means more accurate; further right means a clinician's correction helps more. The dashed line marks the black box with the same encoder.</p>
+        </div>
+        <div role="tabpanel" id="rp-3" aria-labelledby="rt-3" hidden>
+          <div class="table-scroll">
+            <table class="data">
+              <thead><tr><th>Model family</th><th>Mean AUROC, 5 seeds</th><th>Change with all four echo findings</th></tr></thead>
+              <tbody>
+                <tr class="hl"><td>Concept embedding model (primary)</td><td class="n">0.827 ± 0.005</td><td class="n">+1.73 ± 0.21</td></tr>
+                <tr><td>Hybrid bottleneck with residual channel</td><td class="n">0.826 ± 0.004</td><td class="n">+0.47 ± 0.21</td></tr>
+                <tr><td>Black box, same encoder</td><td class="n">0.821 ± 0.004</td><td class="n">no concepts</td></tr>
+                <tr><td>Joint bottleneck, MLP head</td><td class="n">0.813 ± 0.006</td><td class="n">−5.75 ± 0.53</td></tr>
+                <tr><td>Sequential bottleneck, MLP head</td><td class="n">0.798 ± 0.005</td><td class="n">−6.91 ± 1.01</td></tr>
+                <tr><td>Sequential bottleneck, linear head</td><td class="n">0.789 ± 0.002</td><td class="n">−2.79 ± 0.61</td></tr>
+                <tr><td>Independent bottleneck, linear head</td><td class="n">0.777 ± 0.001</td><td class="n">−0.08 ± 0.43</td></tr>
+                <tr><td>Independent bottleneck, MLP head</td><td class="n">0.774 ± 0.002</td><td class="n">+0.68 ± 0.56</td></tr>
+                <tr><td>Joint bottleneck, linear head</td><td class="n">0.739 ± 0.019</td><td class="n">−12.34 ± 5.04</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="audit">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Research practice</p>
+        <h2>Audit before claims</h2>
+        <p>Before the final experiments, I audited my own first pipeline line by line. Each problem changed what the thesis may claim, and each fix is in the results above.</p>
+      </div>
+      <div class="audit">
+        <div class="audit-item">
+          <h3>Target leakage in the first concept set</h3>
+          <p>Four of 15 concepts came from the valve labels; the right atrial enlargement label alone reached AUROC 1.000 for tricuspid regurgitation.</p>
+          <p class="fix">I rebuilt the concepts from echo measurements that exclude every valve label, with missing measurements masked from the loss.</p>
+        </div>
+        <div class="audit-item">
+          <h3>Filter mismatch between training and evaluation</h3>
+          <p>Training used a 0.05–40 Hz band-pass, but evaluation used 0.5–40 Hz.</p>
+          <p class="fix">Re-evaluation at the training band gave mean AUROC 0.815 against 0.816, so the reported accuracy held.</p>
+        </div>
+        <div class="audit-item">
+          <h3>A substring bug in the hallucination checker</h3>
+          <p>The checker matched substrings, so the arrhythmia term “pac” counted inside “impact”.</p>
+          <p class="fix">Word-boundary matching lowered one model's rate from 35% to 29%; every report metric now uses it.</p>
+        </div>
+        <div class="audit-item">
+          <h3>Choices made after seeing results</h3>
+          <p>A model, threshold, or calibration chosen on the test set inflates results.</p>
+          <p class="fix">I fixed the model-selection rule before the five-seed runs, and chose thresholds and calibration on validation data only.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block tint" id="publications">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Publications and presentations</p>
+        <h2>Output</h2>
+        <p>The current list also appears on <a href="https://scholar.google.com/citations?user=jBF01rsAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a>.</p>
+      </div>
+      <ul class="pubs">
+        <li class="pub">
+          <span class="pill ok">Presented · 2026</span>
+          <div>
+            <p class="pub-title">An explainable calibrated concept bottleneck model with evidence-constrained large language model reporting for multi-label valvular heart disease screening from 12-lead ECGs</p>
+            <p class="pub-meta"><span class="me">H. Anjum</span>, N. Perwaiz, S. Sultana, T. Anwar Lashari, Z. Ahmad. ESC Congress 2026, European Society of Cardiology, abstract 86479. Session: Artificial intelligence-powered assessment of cardiac function, 31 August 2026. <a href="https://esc365.escardio.org/presentation/326198" target="_blank" rel="noopener">View on ESC 365</a></p>
+            <details class="cite">
+              <summary>Cite</summary>
+              <div class="cite-body">
+                <pre class="code" id="bib-esc">@misc{anjum2026esc,
+  author       = {Anjum, Hamza and Perwaiz, Nazia and Sultana, Sidra and
+                  Anwar Lashari, Tahira and Ahmad, Zafar},
+  title        = {An explainable calibrated concept bottleneck model with
+                  evidence-constrained large language model reporting for
+                  multi-label valvular heart disease screening from 12-lead {ECGs}},
+  howpublished = {ESC Congress 2026, European Society of Cardiology, abstract 86479},
+  year         = {2026}
+}</pre>
+                <div class="copy-row"><button class="btn small" type="button" data-copy="bib-esc">Copy BibTeX</button><span class="copy-status" aria-live="polite"></span></div>
+              </div>
+            </details>
+          </div>
+        </li>
+        <li class="pub">
+          <span class="pill wip">In preparation</span>
+          <div>
+            <p class="pub-title">Leakage-free concept models with clinician intervention for ECG-based detection of valvular heart disease</p>
+            <p class="pub-meta"><span class="me">H. Anjum</span>, N. Perwaiz, and co-authors. Journal manuscript, working title; target IEEE Journal of Biomedical and Health Informatics.</p>
+          </div>
+        </li>
+        <li class="pub">
+          <span class="pill base">MS thesis · 2026</span>
+          <div>
+            <p class="pub-title">Explainable Valvular Heart Disease Diagnosis by Integrating Domain-Specific Large Language Models</p>
+            <p class="pub-meta"><span class="me">H. Anjum</span>. MS Electrical Engineering thesis, School of Electrical Engineering and Computer Science, National University of Sciences and Technology, Islamabad. Supervisor: Dr. Nazia Perwaiz.</p>
+            <details class="cite">
+              <summary>Cite</summary>
+              <div class="cite-body">
+                <pre class="code" id="bib-thesis">@mastersthesis{anjum2026thesis,
+  author  = {Anjum, Hamza},
+  title   = {Explainable Valvular Heart Disease Diagnosis by Integrating
+             Domain-Specific Large Language Models},
+  school  = {School of Electrical Engineering and Computer Science,
+             National University of Sciences and Technology},
+  address = {Islamabad, Pakistan},
+  year    = {2026}
+}</pre>
+                <div class="copy-row"><button class="btn small" type="button" data-copy="bib-thesis">Copy BibTeX</button><span class="copy-status" aria-live="polite"></span></div>
+              </div>
+            </details>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="projects">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Projects</p>
+        <h2>Engineering behind the research</h2>
+        <p>Each project below exists as working code in my thesis workspace. I will publish the thesis code on GitHub in December 2026.</p>
+      </div>
+      <div class="filters" id="filters" role="group" aria-label="Filter projects">
+        <button type="button" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" data-filter="research" aria-pressed="false">Research</button>
+        <button type="button" data-filter="llm" aria-pressed="false">LLMs</button>
+        <button type="button" data-filter="eng" aria-pressed="false">Engineering</button>
+        <button type="button" data-filter="data" aria-pressed="false">Data</button>
+        <span class="count" id="proj-count" aria-live="polite">6 projects</span>
+      </div>
+      <div class="projects">
+        <article class="card project" data-cat="llm research">
+          <span class="pill wip">Analysis in progress</span>
+          <h3>Report-safety benchmark for medical LLMs</h3>
+          <p>Four report strategies on identical Evidence Tokens: a fixed template, free prompting, a constrained prompt, and a sentence-level guard. Compares domain-specific MedGemma and BioMistral with a general LLM, adds LoRA fine-tuning, and scores fabricated findings, contradictions, coverage, and wording diversity with Wilson intervals.</p>
+          <div class="tags"><span>Transformers</span><span>PEFT / LoRA</span><span>MedGemma</span><span>BioMistral</span></div>
+        </article>
+        <article class="card project" data-cat="research">
+          <span class="pill wip">In progress</span>
+          <h3>Transfer from an ECG foundation model</h3>
+          <p>Tests whether ECGFounder, pretrained on about 10.8 million ECGs and loaded from Hugging Face, beats a ResNet trained from scratch. Runs frozen embeddings and full fine-tuning with both a black-box head and a concept embedding head.</p>
+          <div class="tags"><span>Hugging Face</span><span>ECGFounder</span><span>PyTorch</span></div>
+        </article>
+        <article class="card project" data-cat="eng">
+          <span class="pill ok">Done</span>
+          <h3>Reproducible multi-seed GPU pipeline</h3>
+          <p>Five Colab notebooks that resume after a disconnect, cache a filtered copy of 82,543 ECGs, train nine model families over five seeds, and report AUROC, AUPRC, sensitivity, specificity, PPV, NPV, F1, and MCC with bootstrap intervals.</p>
+          <div class="tags"><span>PyTorch</span><span>bf16 training</span><span>Colab GPUs</span></div>
+        </article>
+        <article class="card project" data-cat="research data">
+          <span class="pill ok">Done</span>
+          <h3>Statistics for model comparison</h3>
+          <p>Paired DeLong tests, 1,000-sample bootstrap intervals, Platt and isotonic calibration with ECE and slope, decision curves, and per-seed paired differences, all with test-set decisions locked before evaluation.</p>
+          <div class="tags"><span>SciPy</span><span>scikit-learn</span><span>NumPy</span></div>
+        </article>
+        <article class="card project" data-cat="data">
+          <span class="pill ok">Done</span>
+          <h3>ECG data audit and signal analytics</h3>
+          <p>Checked patient-level splits for overlap and duplicates, measured prevalence drift between splits, and computed SNR, power spectra, band power, HRV, and MFCC features across the EchoNext ECGs.</p>
+          <div class="tags"><span>pandas</span><span>SciPy signal</span><span>Matplotlib</span></div>
+        </article>
+        <article class="card project" data-cat="eng">
+          <span class="pill base">Prototype</span>
+          <h3>Clinical decision-support web app</h3>
+          <p>A FastAPI service that takes an ECG upload, runs preprocessing and the concept model, builds the Evidence Token, writes a report, and exports a PDF. I built it for research demonstration, not for clinical use.</p>
+          <div class="tags"><span>FastAPI</span><span>Python</span><span>PDF export</span></div>
+        </article>
+      </div>
+      <p class="earlier">Earlier engineering: an <a href="https://github.com/Hamza-anjum/-Assistive-Autonomous-Receptionist-Robot" target="_blank" rel="noopener">open-source assistive receptionist robot</a> in C++ that greets visitors and guides them. More code lives on <a href="https://github.com/Hamza-anjum" target="_blank" rel="noopener">GitHub</a>.</p>
+    </div>
+  </section>
+
+  <section class="block tint" id="skills">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Skills</p>
+        <h2>Toolkit</h2>
+      </div>
+      <div class="skills">
+        <div class="skill-group"><h3>Machine learning</h3><ul><li>PyTorch</li><li>1D CNNs (ResNet1d)</li><li>Concept bottleneck models</li><li>Concept embedding models</li><li>Multi-task learning</li><li>Focal loss</li><li>Mixed-precision training</li><li>Transfer learning</li></ul></div>
+        <div class="skill-group"><h3>Evaluation and statistics</h3><ul><li>Bootstrap CIs</li><li>DeLong test</li><li>Calibration (Platt, isotonic)</li><li>ECE, Brier, slope</li><li>Decision curves</li><li>Operating points</li><li>Wilson intervals</li><li>Multi-seed design</li></ul></div>
+        <div class="skill-group"><h3>Language models</h3><ul><li>Hugging Face Transformers</li><li>LoRA fine-tuning (PEFT)</li><li>Grounded generation</li><li>Hallucination evaluation</li><li>Prompt design</li><li>MedGemma, BioMistral, Qwen</li></ul></div>
+        <div class="skill-group"><h3>Signal processing</h3><ul><li>Zero-phase Butterworth filters</li><li>Power spectra</li><li>SNR estimation</li><li>HRV</li><li>MFCC features</li><li>12-lead ECG morphology</li></ul></div>
+        <div class="skill-group"><h3>Engineering</h3><ul><li>Python</li><li>NumPy, pandas</li><li>scikit-learn, SciPy</li><li>FastAPI</li><li>Google Colab GPUs</li><li>LaTeX</li><li>Matplotlib</li></ul></div>
+        <div class="skill-group"><h3>Clinical domain</h3><ul><li>Valvular heart disease</li><li>Echocardiographic grading</li><li>ECG interpretation</li><li>Clinical reporting</li><li>Screening metrics</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="education">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Education</p>
+        <h2>Training</h2>
+      </div>
+      <ul class="timeline">
+        <li>
+          <span class="when">Sep 2023 – present</span>
+          <div>
+            <h3>MS Electrical Engineering</h3>
+            <p>School of Electrical Engineering and Computer Science (SEECS), National University of Sciences and Technology (NUST), Islamabad.</p>
+            <p>Thesis: Explainable Valvular Heart Disease Diagnosis by Integrating Domain-Specific Large Language Models. Supervisor: Dr. Nazia Perwaiz.</p>
+          </div>
+        </li>
+        <li>
+          <span class="when">2017 – 2021</span>
+          <div>
+            <h3>Bachelor of Engineering (B.E.)</h3>
+            <p>NED University of Engineering and Technology, Karachi.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block dark" id="contact">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Contact</p>
+        <h2>Get in touch</h2>
+        <p>I welcome questions about the thesis, collaboration offers, and PhD or research openings.</p>
+      </div>
+      <div class="contact c2">
+        <div class="contact-cell">
+          <span class="eyebrow">University email</span>
+          <span class="contact-val mono" id="email-uni">hanjum.msee23seecs@seecs.edu.pk</span>
+          <div class="copy-row"><button class="btn small" type="button" data-copy="email-uni">Copy</button><span class="copy-status" aria-live="polite"></span></div>
+        </div>
+        <div class="contact-cell">
+          <span class="eyebrow">Personal email</span>
+          <span class="contact-val mono" id="email-personal">hamza.anjum145@gmail.com</span>
+          <div class="copy-row"><button class="btn small" type="button" data-copy="email-personal">Copy</button><span class="copy-status" aria-live="polite"></span></div>
+        </div>
+      </div>
+      <div class="contact">
+        <div class="contact-cell">
+          <span class="eyebrow">LinkedIn</span>
+          <span class="contact-val">linkedin.com/in/hamza-anjum-1b160619a</span>
+          <div class="copy-row"><a class="btn small" href="https://www.linkedin.com/in/hamza-anjum-1b160619a/" target="_blank" rel="noopener">Open profile</a></div>
+        </div>
+        <div class="contact-cell">
+          <span class="eyebrow">GitHub</span>
+          <span class="contact-val">github.com/Hamza-anjum</span>
+          <div class="copy-row"><a class="btn small" href="https://github.com/Hamza-anjum" target="_blank" rel="noopener">Open profile</a></div>
+        </div>
+        <div class="contact-cell">
+          <span class="eyebrow">Google Scholar</span>
+          <span class="contact-val">Hamza Anjum, verified at seecs.edu.pk</span>
+          <div class="copy-row"><a class="btn small" href="https://scholar.google.com/citations?user=jBF01rsAAAAJ&amp;hl=en" target="_blank" rel="noopener">Open profile</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Results on this page come from the thesis result files: five random seeds, a held-out test set of 5,442 patients, and thresholds fixed on validation data.</p>
+    <p>Hamza Anjum · Islamabad, Pakistan · <a href="https://www.linkedin.com/in/hamza-anjum-1b160619a/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/Hamza-anjum" target="_blank" rel="noopener">GitHub</a> · <a href="https://scholar.google.com/citations?user=jBF01rsAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a> · Last updated November 2026.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+  const root = document.documentElement;
+  const css = (name) => getComputedStyle(root).getPropertyValue(name).trim();
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const darkMQ = window.matchMedia("(prefers-color-scheme: dark)");
+  const store = {
+    get(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } },
+    set(k, v) { try { window.localStorage.setItem(k, v); } catch (e) { /* storage unavailable */ } }
+  };
+
+  /* ---------- theme toggle (per-viewer convenience) ---------- */
+  const themeBtn = document.getElementById("theme-btn");
+  const themeIcon = document.getElementById("theme-icon");
+  const MOON = "M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z";
+  const SUN = "M12 4V2M12 22v-2M4.9 4.9 3.5 3.5M20.5 20.5l-1.4-1.4M4 12H2M22 12h-2M4.9 19.1l-1.4 1.4M20.5 3.5l-1.4 1.4M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10z";
+  const isDark = () => root.dataset.theme ? root.dataset.theme === "dark" : darkMQ.matches;
+  function syncThemeIcon() {
+    themeIcon.setAttribute("d", isDark() ? SUN : MOON);
+    themeBtn.setAttribute("aria-label", isDark() ? "Switch to light theme" : "Switch to dark theme");
+  }
+  const saved = store.get("ha-theme");
+  if (saved === "dark" || saved === "light") root.dataset.theme = saved;
+  syncThemeIcon();
+  themeBtn.addEventListener("click", () => {
+    const next = isDark() ? "light" : "dark";
+    root.dataset.theme = next; store.set("ha-theme", next); syncThemeIcon();
+  });
+  darkMQ.addEventListener("change", syncThemeIcon);
+
+  /* ---------- tabs (audience switch, pipeline, results) ---------- */
+  document.querySelectorAll("[role=tablist][data-tabs]").forEach((list) => {
+    const tabs = Array.from(list.querySelectorAll("[role=tab]"));
+    function select(t) {
+      tabs.forEach((x) => {
+        const on = x === t;
+        x.setAttribute("aria-selected", on ? "true" : "false");
+        x.tabIndex = on ? 0 : -1;
+        const panel = document.getElementById(x.getAttribute("aria-controls"));
+        if (panel) panel.hidden = !on;
+      });
+      if (list.classList.contains("seg")) store.set("ha-view", t.id);
+    }
+    tabs.forEach((t, i) => {
+      t.addEventListener("click", () => select(t));
+      t.addEventListener("keydown", (e) => {
+        if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+        e.preventDefault();
+        const n = tabs[(i + (e.key === "ArrowRight" ? 1 : -1) + tabs.length) % tabs.length];
+        select(n); n.focus();
+      });
+    });
+    if (list.classList.contains("seg")) {
+      const v = store.get("ha-view"); const t = v && document.getElementById(v);
+      if (t && tabs.includes(t)) select(t);
+    }
+  });
+
+  /* ---------- live ECG strip: synthetic lead II on a 1 mm / 5 mm grid ---------- */
+  const cv = document.getElementById("ecg");
+  const ctx = cv.getContext("2d");
+  const hr = document.getElementById("hr");
+  const hrOut = document.getElementById("hr-out");
+  let W = 0, H = 0, secs = 8, pxPerMm = 5, raf = 0, visible = true;
+  const t0 = performance.now();
+  let RR = 60 / 72;
+  function beat(t) {                           // millivolts, t in seconds from the R peak
+    const g = (c, a, w) => a * Math.exp(-((t - c) * (t - c)) / (2 * w * w));
+    const q = Math.sqrt(RR / 0.8333);          // QT shortens with rate (Bazett-like)
+    return g(-0.17, 0.12, 0.022) + g(-0.035, -0.10, 0.009) + g(0, 1.05, 0.011) +
+           g(0.035, -0.28, 0.011) + g(0.29 * q, 0.30, 0.045 * q);
+  }
+  function mv(t) {
+    const k = Math.round((t - 0.35) / RR);
+    const tr = t - (0.35 + k * RR);
+    return beat(tr) + beat(tr - RR) + beat(tr + RR) + 0.025 * Math.sin(2 * Math.PI * 0.22 * t);
+  }
+  function size() {
+    const r = cv.getBoundingClientRect();
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    W = r.width; H = r.height;
+    cv.width = Math.max(1, Math.round(W * dpr)); cv.height = Math.max(1, Math.round(H * dpr));
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    secs = Math.max(3, Math.min(16, W / (25 * 5.2)));
+    pxPerMm = W / (secs * 25);                 // 25 mm per second
+  }
+  function draw(cursor) {
+    ctx.clearRect(0, 0, W, H);
+    const minor = css("--band-grid-minor"), major = css("--band-grid-major"), trace = css("--trace");
+    ctx.lineWidth = 1;
+    for (let i = 0, x = 0; x <= W; i++, x = i * pxPerMm) {
+      if (i % 5 && pxPerMm < 2.5) continue;
+      ctx.strokeStyle = i % 5 ? minor : major;
+      ctx.beginPath(); ctx.moveTo(Math.round(x) + 0.5, 0); ctx.lineTo(Math.round(x) + 0.5, H); ctx.stroke();
+    }
+    for (let i = 0, y = 0; y <= H; i++, y = i * pxPerMm) {
+      if (i % 5 && pxPerMm < 2.5) continue;
+      ctx.strokeStyle = i % 5 ? minor : major;
+      ctx.beginPath(); ctx.moveTo(0, Math.round(y) + 0.5); ctx.lineTo(W, Math.round(y) + 0.5); ctx.stroke();
+    }
+    const base = H * 0.66, gap = 18;
+    ctx.strokeStyle = trace; ctx.lineWidth = 1.8; ctx.lineJoin = "round";
+    ctx.shadowColor = trace; ctx.shadowBlur = 7;
+    ctx.beginPath();
+    let pen = false;
+    for (let x = 0; x <= W; x += 1) {
+      if (cursor !== null && x > cursor && x < cursor + gap) { pen = false; continue; }
+      const y = base - mv((x / W) * secs) * 10 * pxPerMm;   // 10 mm per millivolt
+      if (!pen) { ctx.moveTo(x, y); pen = true; } else { ctx.lineTo(x, y); }
+    }
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+    if (cursor !== null) {
+      ctx.fillStyle = trace;
+      ctx.beginPath(); ctx.arc(cursor, base - mv((cursor / W) * secs) * 10 * pxPerMm, 3, 0, Math.PI * 2); ctx.fill();
+    }
+  }
+  function frame(now) {
+    if (visible && document.visibilityState === "visible") draw((((now - t0) / 1000) % secs) / secs * W);
+    raf = requestAnimationFrame(frame);
+  }
+  function startStrip() {
+    cancelAnimationFrame(raf); size();
+    if (reduce.matches) draw(null); else raf = requestAnimationFrame(frame);
+  }
+  function setRate() {
+    const bpm = Number(hr.value);
+    RR = 60 / bpm;
+    hrOut.textContent = `${bpm} bpm · RR ${Math.round(RR * 1000)} ms`;
+    if (reduce.matches) draw(null);
+  }
+  hr.addEventListener("input", setRate);
+  setRate(); startStrip();
+  if ("ResizeObserver" in window) new ResizeObserver(() => { size(); if (reduce.matches) draw(null); }).observe(cv);
+  if ("IntersectionObserver" in window) new IntersectionObserver((es) => { visible = es[0].isIntersecting; }).observe(cv);
+  reduce.addEventListener("change", startStrip);
+
+  /* ---------- intervention explorer (thesis table T6: mean AUROC over five seeds) ---------- */
+  // value order: none, LVH, LVD, PH, RVD, LVH+LVD, +PH, all four echo, all echo except PH, all 10 concepts
+  const FAM = [
+    { n: "Concept embedding model", hl: true, v: [0.827, 0.828, 0.831, 0.841, 0.831, 0.831, 0.844, 0.844, 0.834, 0.844] },
+    { n: "Hybrid bottleneck",              v: [0.826, 0.826, 0.827, 0.828, 0.828, 0.826, 0.829, 0.831, 0.828, 0.831] },
+    { n: "Joint bottleneck, MLP",          v: [0.813, 0.787, 0.814, 0.789, 0.805, 0.788, 0.758, 0.755, 0.783, 0.757] },
+    { n: "Sequential bottleneck, MLP",     v: [0.798, 0.776, 0.788, 0.756, 0.760, 0.767, 0.735, 0.729, 0.753, 0.724] },
+    { n: "Sequential bottleneck, linear",  v: [0.789, 0.776, 0.787, 0.778, 0.779, 0.772, 0.761, 0.761, 0.768, 0.761] },
+    { n: "Independent bottleneck, linear", v: [0.777, 0.778, 0.778, 0.779, 0.780, 0.779, 0.777, 0.776, 0.779, 0.774] },
+    { n: "Independent bottleneck, MLP",    v: [0.774, 0.774, 0.775, 0.783, 0.777, 0.776, 0.782, 0.780, 0.777, 0.777] },
+    { n: "Joint bottleneck, linear",       v: [0.739, 0.691, 0.719, 0.665, 0.738, 0.675, 0.614, 0.615, 0.671, 0.615] }
+  ];
+  const SC = [
+    { l: "Nothing", d: "no measured findings" },
+    { l: "LVH", d: "measured LVH only" },
+    { l: "LV dysfunction", d: "measured LV dysfunction only" },
+    { l: "Pulmonary hypertension", d: "measured pulmonary hypertension only" },
+    { l: "RV dysfunction", d: "measured RV dysfunction only" },
+    { l: "LVH + LV dysfunction", d: "measured LVH and LV dysfunction" },
+    { l: "+ pulmonary hypertension", d: "measured LVH, LV dysfunction, and pulmonary hypertension" },
+    { l: "All four echo findings", d: "all four measured echo findings" },
+    { l: "All except PH", d: "all measured echo findings except pulmonary hypertension" },
+    { l: "All 10 concepts", d: "all ten measured concepts" }
+  ];
+  const LO = 0.60, HI = 0.86, BB = 0.821;
+  const pct = (v) => ((v - LO) / (HI - LO) * 100).toFixed(2) + "%";
+  const scenBox = document.getElementById("scen");
+  const db = document.getElementById("db");
+  const note = document.getElementById("db-note");
+  const fmt = (x) => (x > 0 ? "+" : x < 0 ? "−" : "±") + Math.abs(x).toFixed(1);
+  const axis = document.createElement("div");
+  axis.className = "db-row axis";
+  axis.innerHTML = `<span class="db-name"></span><div class="ticks">${[0.60, 0.65, 0.70, 0.75, 0.80, 0.85]
+    .map((t) => `<span style="left:${pct(t)}">${t.toFixed(2)}</span>`).join("")}</div><span class="db-delta">Δ pts</span>`;
+  db.appendChild(axis);
+  const rows = FAM.map((f) => {
+    const row = document.createElement("div");
+    row.className = "db-row" + (f.hl ? " hl" : "");
+    row.innerHTML = `<span class="db-name">${f.n}</span>
+      <div class="track"><span class="ref" style="left:${pct(BB)}"></span><span class="seg-bar"></span>
+      <span class="dot base" style="left:${pct(f.v[0])}"></span><span class="dot now"></span></div>
+      <span class="db-delta"></span>`;
+    db.appendChild(row);
+    return { f, row, bar: row.querySelector(".seg-bar"), now: row.querySelector(".dot.now"), delta: row.querySelector(".db-delta") };
+  });
+  const scenBtns = SC.map((s, i) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.textContent = s.l; b.setAttribute("aria-pressed", "false");
+    b.addEventListener("click", () => render(i));
+    scenBox.appendChild(b);
+    return b;
+  });
+  function render(i) {
+    scenBtns.forEach((b, k) => b.setAttribute("aria-pressed", k === i ? "true" : "false"));
+    rows.forEach(({ f, row, bar, now, delta }) => {
+      const a = f.v[0], b = f.v[i], d = (b - a) * 100;
+      const cls = Math.abs(d) < 0.05 ? "" : d > 0 ? "gain" : "loss";
+      bar.className = "seg-bar " + cls;
+      bar.style.left = pct(Math.min(a, b));
+      bar.style.width = ((Math.abs(b - a)) / (HI - LO) * 100).toFixed(2) + "%";
+      now.style.left = pct(b);
+      delta.className = "db-delta " + cls;
+      delta.textContent = i === 0 ? "0.0" : fmt(d);
+      row.title = `${f.n}: ${a.toFixed(3)} alone, ${b.toFixed(3)} with ${SC[i].d}`;
+    });
+    if (i === 0) {
+      note.textContent = "Pick the findings a clinician measures. Each model then receives those measured values in place of its own predictions.";
+    } else {
+      const c = FAM[0], j = FAM[2];
+      note.textContent = `With ${SC[i].d}: the concept embedding model moves from ${c.v[0].toFixed(3)} to ${c.v[i].toFixed(3)} (${fmt((c.v[i] - c.v[0]) * 100)} points), and the joint bottleneck with an MLP head moves from ${j.v[0].toFixed(3)} to ${j.v[i].toFixed(3)} (${fmt((j.v[i] - j.v[0]) * 100)} points).`;
+    }
+  }
+  render(7);
+
+  /* ---------- scatter: accuracy against gain with all four echo findings (thesis table T4) ---------- */
+  const pts = [
+    { n: "CEM (primary)",         x: 1.73,   y: 0.827, dx: 9,  dy: 4,   a: "start",  hl: true },
+    { n: "Hybrid",                x: 0.47,   y: 0.826, dx: -9, dy: -8,  a: "end" },
+    { n: "Joint, MLP head",       x: -5.75,  y: 0.813, dx: 0,  dy: -11, a: "middle" },
+    { n: "Sequential, MLP head",  x: -6.91,  y: 0.798, dx: 0,  dy: 19,  a: "middle" },
+    { n: "Sequential, linear",    x: -2.79,  y: 0.789, dx: 9,  dy: 4,   a: "start" },
+    { n: "Independent, linear",   x: -0.08,  y: 0.777, dx: -9, dy: 0,   a: "end" },
+    { n: "Independent, MLP head", x: 0.68,   y: 0.774, dx: 9,  dy: 10,  a: "start" },
+    { n: "Joint, linear head",    x: -12.34, y: 0.739, dx: 9,  dy: 4,   a: "start" }
+  ];
+  const VW = 680, VH = 400, m = { l: 66, r: 24, t: 22, b: 62 };
+  const X0 = -14, X1 = 6, Y0 = 0.73, Y1 = 0.84;
+  const sx = (v) => m.l + (v - X0) / (X1 - X0) * (VW - m.l - m.r);
+  const sy = (v) => m.t + (Y1 - v) / (Y1 - Y0) * (VH - m.t - m.b);
+  let s = `<svg viewBox="0 0 ${VW} ${VH}" xmlns="http://www.w3.org/2000/svg">`;
+  for (const yt of [0.74, 0.76, 0.78, 0.80, 0.82, 0.84]) {
+    s += `<line class="grid" x1="${m.l}" x2="${VW - m.r}" y1="${sy(yt)}" y2="${sy(yt)}"/>`;
+    s += `<text class="tk" x="${m.l - 8}" y="${sy(yt) + 4}" text-anchor="end">${yt.toFixed(2)}</text>`;
+  }
+  for (const xt of [-12, -9, -6, -3, 0, 3, 6]) {
+    s += `<text class="tk" x="${sx(xt)}" y="${VH - m.b + 18}" text-anchor="middle">${xt > 0 ? "+" + xt : xt}</text>`;
+  }
+  s += `<line class="ax" x1="${m.l}" x2="${VW - m.r}" y1="${VH - m.b}" y2="${VH - m.b}"/>`;
+  s += `<line class="ax" x1="${m.l}" x2="${m.l}" y1="${m.t}" y2="${VH - m.b}"/>`;
+  s += `<line class="zero" x1="${sx(0)}" x2="${sx(0)}" y1="${m.t}" y2="${VH - m.b}"/>`;
+  s += `<line class="bb" x1="${m.l}" x2="${VW - m.r}" y1="${sy(BB)}" y2="${sy(BB)}"/>`;
+  s += `<text class="lab" x="${m.l + 8}" y="${sy(BB) - 6}">Black box, same encoder (0.821)</text>`;
+  for (const p of pts) {
+    s += `<circle class="pt${p.hl ? " hl" : ""}" cx="${sx(p.x)}" cy="${sy(p.y)}" r="${p.hl ? 6.5 : 5}"/>`;
+    s += `<text class="lab${p.hl ? " hl" : ""}" x="${sx(p.x) + p.dx}" y="${sy(p.y) + p.dy}" text-anchor="${p.a}">${p.n}</text>`;
+  }
+  s += `<text class="axt" x="${(m.l + VW - m.r) / 2}" y="${VH - 14}" text-anchor="middle">Change in mean AUROC with all four measured echo findings (points)</text>`;
+  s += `<text class="axt" transform="translate(16 ${(m.t + VH - m.b) / 2}) rotate(-90)" text-anchor="middle">Mean AUROC, five seeds</text>`;
+  document.getElementById("chart").innerHTML = s + `</svg>`;
+
+  /* ---------- project filter ---------- */
+  const filterBtns = Array.from(document.querySelectorAll("#filters [data-filter]"));
+  const projects = Array.from(document.querySelectorAll(".project"));
+  const projCount = document.getElementById("proj-count");
+  filterBtns.forEach((b) => b.addEventListener("click", () => {
+    const f = b.dataset.filter;
+    filterBtns.forEach((x) => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+    let n = 0;
+    projects.forEach((p) => {
+      const show = f === "all" || p.dataset.cat.split(" ").includes(f);
+      p.hidden = !show; if (show) n++;
+    });
+    projCount.textContent = `${n} project${n === 1 ? "" : "s"}`;
+  }));
+
+  /* ---------- copy buttons ---------- */
+  document.querySelectorAll("[data-copy]").forEach((btn) => btn.addEventListener("click", async () => {
+    const el = document.getElementById(btn.dataset.copy);
+    const status = btn.parentElement.querySelector(".copy-status");
+    const text = el.textContent.trim();
+    try {
+      await navigator.clipboard.writeText(text);
+      if (status) status.textContent = "Copied";
+    } catch (e) {
+      const r = document.createRange(); r.selectNodeContents(el);
+      const sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+      if (status) status.textContent = "Selected; press Ctrl+C";
+    }
+  }));
+
+  /* ---------- reading progress and section highlighting ---------- */
+  const bar = document.getElementById("progress");
+  let ticking = false;
+  function progress() {
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (h > 0 ? Math.min(100, (window.scrollY / h) * 100) : 0).toFixed(2) + "%";
+    ticking = false;
+  }
+  window.addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(progress); } }, { passive: true });
+  progress();
+  const links = Array.from(document.querySelectorAll(".nav a"));
+  const byId = new Map(links.map((a) => [a.getAttribute("href").slice(1), a]));
+  if ("IntersectionObserver" in window) {
+    const spy = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        links.forEach((a) => a.removeAttribute("aria-current"));
+        const a = byId.get(e.target.id); if (a) a.setAttribute("aria-current", "true");
+      });
+    }, { rootMargin: "-35% 0px -60% 0px" });
+    byId.forEach((_, id) => { const el = document.getElementById(id); if (el) spy.observe(el); });
+  }
+})();
+</script>
+</body>
+</html>
